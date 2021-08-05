@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+<!--  -->
+{% block head %} {% endblock %}
+
+<!--  -->
+{% block body %}
+<div class="content py-10 flex justify-center">
+  <div class="w-1/2">
+    <div class="flex justify-center my-10">
+      <h4 class="text-4xl">Flask TailwindCSS Reminder App</h4>
+    </div>
+
+    <div class="flex flex-col justify-center items-center my-10">
+      {% if tasks|length < 1 %}
+
+      <h4>There are no entries to show. Create one below</h4>
+
+      <div class="w-full my-10">
+        <div class="w-full flex justify-center">
+          <!-- Input -->
+          <form action="/" method="POST" class="flex items-center">
+            <div class="flex justify-between">
+              <input
+                type="text"
+                name="content"
+                id="content"
+                class="w-full bg-gray-50 shadow-2xl rounded-md px-5 py-1"
+              />
+              <input
+                type="submit"
+                value="Add Task"
+                class="bg-gray-900 text-white mx-3 px-4 py-1"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+
+      {% else %}
+
+      <div class="w-full">
+        <div>
+          <div class="w-full flex justify-center">
+            <!-- Input -->
+            <form action="/" method="POST" class="flex items-center">
+              <div class="flex justify-between">
+                <input
+                  type="text"
+                  name="content"
+                  id="content"
+                  class="w-full bg-gray-50 shadow-2xl rounded-md px-5 py-1"
+                />
+                <input
+                  type="submit"
+                  value="Add Task"
+                  class="bg-gray-900 text-white mx-3 px-4 py-1"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-2xl my-5 p-6 text-gray-900">
+          <div class="">
+            <!-- Results -->
+            <table class="w-full">
+              <tr class="text-left">
+                <th>Task</th>
+                <th>Added</th>
+                <th>Actions</th>
+              </tr>
+
+              {% for task in tasks %}
+              <tr>
+                <td>{{ task.content }}</td>
+                <td>{{ task.date_created.date() }}</td>
+                <td class="flex justify-between">
+                  <a href="/update/{{task.id}}">Update</a>
+                  <a href="/delete/{{task.id}}">Delete</a>
+                </td>
+              </tr>
+
+              {% endfor %}
+            </table>
+
+            <!-- Results -->
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <!--  -->
+
+      <!-- End of table -->
+    </div>
+  </div>
+  {% endblock %}
+</div>

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+<!--  -->
+{% block head %} {% endblock %}
+
+<!--  -->
+{% block body %}
+<div class="content py-10 flex justify-center">
+  <div class="w-1/2">
+    <div class="flex justify-center my-10">
+      <h4 class="text-4xl">Flask TailwindCSS Reminder App</h4>
+    </div>
+    <div class="w-full">
+      <div class="w-full flex justify-center">
+        <!-- Input -->
+        <form
+          action="/update/{{task.id}}"
+          method="POST"
+          class="flex items-center"
+        >
+          <div class="flex justify-between">
+            <input
+              type="text"
+              name="content"
+              id="content"
+              value="{{task.content}}"
+              class="w-full bg-gray-50 shadow-2xl rounded-md px-5 py-1"
+            />
+            <input
+              type="submit"
+              value="Update Task"
+              class="bg-gray-900 text-white mx-3 px-4 py-1"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
